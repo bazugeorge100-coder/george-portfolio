@@ -121,8 +121,8 @@ if (supportForm) {
 
         try {
 
-            const response = await fetch(
-                "http://localhost:5000/api/support",
+           const response = await fetch(
+    "https://george-portfolio-pe0k.onrender.com/api/support",
                 {
                     method: "POST",
 
