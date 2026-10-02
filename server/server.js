@@ -37,15 +37,7 @@ app.post("/api/support", async (req, res) => {
                 message: "Please enter a valid amount."
             });
         }
-
-        // Convert 07XXXXXXXX to 2547XXXXXXXX
-        //let formattedPhone = phone.trim().replace(/\s+/g, "");
-
-       // if (formattedPhone.startsWith("07")) {
-          //  formattedPhone = "254" + formattedPhone.substring(1);
-       // } else if (formattedPhone.startsWith("+254")) {
-          //  formattedPhone = formattedPhone.substring(1);
-        //}
+//
 
     let formattedPhone = phone.trim().replace(/\s+/g, "");
 
@@ -56,8 +48,8 @@ app.post("/api/support", async (req, res) => {
     formattedPhone = formattedPhone.substring(1);
   }
 
-        // Basic Kenyan number validation
-        if (!/^2547\d{8}$/.test(formattedPhone)) {
+        // Basic Kenyan number validation (allows both 2547... and 2541...)
+        if (!/^254[17]\d{8}$/.test(formattedPhone)) {
             return res.status(400).json({
                 success: false,
                 message: "Please enter a valid Kenyan M-Pesa number."
