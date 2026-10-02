@@ -39,13 +39,22 @@ app.post("/api/support", async (req, res) => {
         }
 
         // Convert 07XXXXXXXX to 2547XXXXXXXX
-        let formattedPhone = phone.trim().replace(/\s+/g, "");
+        //let formattedPhone = phone.trim().replace(/\s+/g, "");
 
-        if (formattedPhone.startsWith("07")) {
-            formattedPhone = "254" + formattedPhone.substring(1);
-        } else if (formattedPhone.startsWith("+254")) {
-            formattedPhone = formattedPhone.substring(1);
-        }
+       // if (formattedPhone.startsWith("07")) {
+          //  formattedPhone = "254" + formattedPhone.substring(1);
+       // } else if (formattedPhone.startsWith("+254")) {
+          //  formattedPhone = formattedPhone.substring(1);
+        //}
+
+    let formattedPhone = phone.trim().replace(/\s+/g, "");
+
+   // Convert 07XXXXXXXX or 01XXXXXXXX to 254XXXXXXXX
+  if (/^(07|01)/.test(formattedPhone)) {
+    formattedPhone = "254" + formattedPhone.substring(1);
+  } else if (formattedPhone.startsWith("+254")) {
+    formattedPhone = formattedPhone.substring(1);
+  }
 
         // Basic Kenyan number validation
         if (!/^2547\d{8}$/.test(formattedPhone)) {
